@@ -6,7 +6,7 @@
 #### VARIABLE DECLARATIONS ####
 cont ='y'
 keep_item = ''
-temp_cals = 0
+cals = 0
 mealcals = 0
 itemcount = 0
 #### END OF VARIABLE DECLARATIONS ####
@@ -28,7 +28,7 @@ while cont.lower() == 'y':
     # Calculates calories based on number of fats, protein, and carbs, and how many cals in each.
     cals = (g_carbs*4) + (g_fats*9) + (g_protein*4)
     print("Total calories for {} are {}.".format(item_name,cals) )
-    print("Your meal will have {} items totalling {} calories.".format(itemcount,mealcals))
+    print("Your meal will have {} items totalling {} calories.".format(itemcount,(mealcals+cals)))
     ## END PROCESS & OUTPUT ##
 
     ## DATA VERIFICATION ##
