@@ -3,59 +3,62 @@
 # Date: Oct 10, 2016
 # Purpose: To count calories for a meal based on the input of fats, carbohydrates, and proteins.
 
-#### VARIABLE DECLARATIONS ####
+## VARIABLE DECLARATIONS ##
 cont = 'y'
 keep_item = ''
 cals = 0
 mealcals = 0
 itemcount = 0
 valid_data = False
-#### END OF VARIABLE DECLARATIONS ####
+
+
+## FUNCTIONS ##
+def inp_item_name():  # Asks user for food name. Must be under 20 chars and more than 0
+    while True:
+        item_name = input("Enter item name >")
+        if len(item_name) > 20:
+            print("We both know that's not a real food. Try again.")
+        elif len(item_name) == 0:
+            print("You entered nothing. Try again.")
+        return item_name
+
+
+def nut_input():  # Returns carbs, fats and proteins after asking for user input
+    while True:
+        try:
+            g_carbs = int(input("Carbs >"))
+            break
+        except Exception as detail:
+            print("Error: ", detail)
+
+    while True:
+        try:
+            g_fats = int(input("Fats >"))
+            break
+        except Exception as detail:
+            print("Error: ", detail)
+
+    while True:
+        try:
+            g_protein = int(input("Proteins >"))
+            break
+        except Exception as detail:
+            print("Error: ", detail)
+
+    return g_carbs, g_fats, g_protein
+
+
+def cal_calc(gytpe, quant):
+
 
 #### MAIN LOOP ####
 while cont.lower() == 'y':
 
-    ## ITEM PROPERTY -INPUT- ##
-    # Asks the user about the food they wish to enter.
-    while not valid_data:
-        item_name = input("Enter item name >")
-        if len(item_name) > 20:
-            print("We both know thats not a real food. Try again.")
-        elif len(item_name) == 0:
-            print("You entered nothing. Try again.")
-        else:
-            valid_data = True
+    item = inp_item_name()
 
-    # Flag Reset
-    valid_data = False
 
-    while not valid_data:
-        try:
-            g_carbs = int(input("carbs >"))
-            valid_data = True
-        except Exception as detail:
-            print("Error: ", detail)
 
-    # Flag Reset
-    valid_data = False
 
-    while not valid_data:
-        try:
-            g_fats = int(input("fats >"))
-            valid_data = True
-        except Exception as detail:
-            print("Error: ", detail)
-
-    # Flag Reset
-    valid_data = False
-
-    while not valid_data:
-        try:
-            g_protein = int(input("carbs >"))
-            valid_data = True
-        except Exception as detail:
-            print("Error: ", detail)
-    ## END OF -INPUT- ##
 
     ## PROCESS & OUTPUT ##
     # Calculates calories based on number of fats, protein, and carbs, and how many cals in each.
@@ -63,6 +66,7 @@ while cont.lower() == 'y':
     print("Total calories for {} are {}.".format(item_name, cals))
     print("Your meal will have {} items totalling {} calories.".format(itemcount, (mealcals + cals)))
     ## END PROCESS & OUTPUT ##
+
 
     ## DATA VERIFICATION ##
     # Verifies the user wishes to input this data.
