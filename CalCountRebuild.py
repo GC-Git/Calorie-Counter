@@ -1,7 +1,27 @@
+# Program: Calorie Counter
+# Programmer: Gordon Clark
+# Date: Nov 22, 2016
+# Purpose: To count calories for a meal based on the input of fats, carbohydrates, and proteins for each item.
+
+#=================================
+#             README
+#---------------------------------
+# Most of the functions take the
+# list as parameters if they need
+# to do any data manipulation. This
+# will change later but due to the
+# point we are in learning this is
+# how we will do it. Later it will
+# be possible to create a class for
+# the items instead.
+#=================================
+
+
 import os  # Used in cls() for clearing the screen
 
 #***
-# This is the options available to the user. Add menu functions here for input then edit main loop to add functionality
+# This is the options available to the user. Add menu functions here for input then edit main loop to add functionality.
+# The left is the key to press, the right is the option shown to the user.
 #***
 disp_dict = {
     "a": "[a]dd",
@@ -14,6 +34,7 @@ disp_dict = {
 #
 #   Functions
 #
+#*****
 def disp_menu():
     # Displays disp_dict menu options, then asks for input. Validates against dictionary and returns input.
     print("Menu:")
@@ -32,7 +53,7 @@ def cls():  # Clears the console
     os.system('cls' if os.name=='nt' else 'clear')
 
 
-def add_process(calories, names, count):
+def add_process(calories, names, count):  # Takes the lists as a parameter, returns in same order
 
     def input_grams():  # Asks for fats carbs and proteins then returns calories
         while True:
@@ -65,7 +86,7 @@ def add_process(calories, names, count):
         return (g_carbs*4 + g_fats*9 + g_protein*4)
 
 
-    def add_item(calories, names, count):
+    def add_item(calories, names, count):  # takes the lists as a parameter, ask user to keep meal, takes approp action
         if temp_count > 0:
             include = ''
             while include != 'y' and include != 'n':
@@ -90,7 +111,7 @@ def add_process(calories, names, count):
             return item_name
 
 
-    def request_count():
+    def request_count():  # Asks how many of an item the user would like
         newcount = -1  # starting value to initiate loop
         while 0 >= newcount:
             try:
@@ -117,7 +138,7 @@ def add_process(calories, names, count):
     return calories, names, count
 
 
-def disp_cart(calories, names, count):
+def disp_cart(calories, names, count):  # Displays the current meal
     if len(count) > 0:
         print("{:=^30}{}{:=^30}".format("", "CURRENT MEAL", ""))
         print("{:15}{:15}{:15}{:15}".format("Name", "Cal/Item", "Count", "Cals Total"))
@@ -131,7 +152,7 @@ def disp_cart(calories, names, count):
         print("{:.<15}{:.<15}{:.<15}{:.<15}".format("Totals:", "", sum(count), totalcals))
 
 
-def del_item(calories, names, count):
+def del_item(calories, names, count):  # Pass in the lists, it will return them in the same order with item removed
     item_for_removal = -2  # -2 = Value intialization, -1 = Cancel
     while item_for_removal not in range(-1, len(calories)):
         try:
